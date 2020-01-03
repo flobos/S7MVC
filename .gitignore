@@ -1,3 +1,8 @@
+.vs/
+packages/
+ClientBin/
+obj/
+Bin/
 # sphinx build directories
 _build/
 .project
