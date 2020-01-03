@@ -1,0 +1,58 @@
+﻿@model S7MVC.Models.usuarios_productos
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h3>Detalle</h3>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_pro_activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_pro_activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anos.ano_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anos.ano_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.periodos.per_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.periodos.per_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productos.pro_codigo_umas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productos.pro_codigo_umas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarios.usu_nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios.usu_nombres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.usu_pro_idn }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+</p>

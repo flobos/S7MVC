@@ -1,0 +1,50 @@
+﻿@model S7MVC.Models.atenciones
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h3>Detalle</h3>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_idn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_cerrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_cerrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ate_idn }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+</p>

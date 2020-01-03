@@ -1,0 +1,76 @@
+﻿@model S7MVC.Models.atenciones_procesos_incidencias
+
+@{
+    ViewBag.Title = "Ingresar";
+}
+
+
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        <div class="panel-title">Gestionar Incidencia</div>
+    </div>
+
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ate_inc_idn)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.pro_ges_inc_idn, "pro_ges_inc_idn", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("pro_ges_inc_idn", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.pro_ges_inc_idn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.emp_usu_sed_idn, "emp_usu_sed_idn", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("emp_usu_sed_idn", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.emp_usu_sed_idn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ate_pro_inc_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.ate_pro_inc_observacion, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ate_pro_inc_observacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                @{Html.RenderAction("Index_funcionario", "atenciones_procesos_incidencias", new { ate_inc_idn = ViewBag.ate_inc_idn });}
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        </div>

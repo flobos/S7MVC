@@ -1,0 +1,72 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_incidencias>
+
+@{
+    Layout = null;
+}
+
+<div class="panel-group">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Incidencias</div>
+        </div>
+        <div class="panel-body">
+
+            <p>
+                @Html.ActionLink("Ingresar", "Create", "atenciones", new { usu_idn = ViewBag.usu_idn }, new { @class = "btn btn-primary btn-md" })
+            </p>
+
+            <table class="table table-hover table-condensed small">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ate_inc_fecha_ingreso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ate_inc_observacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ate_inc_resuelta)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ate_inc_fecha_resuelta)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.incidencias.inc_nombre)
+                    </th>
+
+
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ate_inc_fecha_ingreso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ate_inc_observacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ate_inc_resuelta)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ate_inc_fecha_resuelta)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.incidencias.inc_nombre)
+                        </td>
+
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+</div>

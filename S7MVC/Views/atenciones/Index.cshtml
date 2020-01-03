@@ -1,0 +1,51 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h3>Lista</h3>
+
+<p>
+    @Html.ActionLink("Ingresar", "Create", null , new { @class = "btn btn-primary btn-md" })
+</p>
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_idn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_fecha_ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_cerrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_idn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ate_fecha_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ate_cerrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ate_idn }, new { @class = "btn btn-warning btn-xs" } ) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.ate_idn }, new { @class = "btn btn-info btn-xs" } ) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ate_idn }, new { @class = "btn btn-danger btn-xs" } )
+        </td>
+    </tr>
+}
+
+</table>

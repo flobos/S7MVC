@@ -1,0 +1,70 @@
+﻿@model IEnumerable<S7MVC.Models.procesos_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+<div class="panel panel-primary" >
+<div class="panel-heading">
+
+    <div class="panel-title">Etepas</div>   
+</div>
+
+    <div class="panel-body">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav nav-tabs">
+                @foreach (var item in Model)
+                {
+
+                    if (item.pro_inc_idn <= ViewBag._pro_inc_idn_max)
+                    {
+                                <li>
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            
+                                </li>
+                                <li>
+                                @Ajax.ActionLink(item.pro_inc_nombre, // <-- Text to display
+                                        "Index_procesos_incidencias", "atenciones_procesos_incidencias",
+                                        new { pro_inc_idn = item.pro_inc_idn, ate_inc_idn = ViewBag.ate_inc_idn },
+                                        new AjaxOptions
+                                        {
+                                            UpdateTargetId = "incidencias",
+                                            InsertionMode = InsertionMode.Replace,
+                                            HttpMethod = "GET"
+                                        }, new { @class = "btn btn-success btn-progress-active" })
+                                </li>
+                    }
+
+                    else
+                    {
+                        <li>
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+
+                        </li>
+                        <li>
+                        <span class="btn btn-default disabled">@item.pro_inc_nombre</span>
+                        </li>
+                    }
+
+
+                
+                 }
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div id="incidencias">
+    </div>
+
+    <div>
+
+        @{Html.RenderAction("index_solucion", "procesos_incidencias", new { ate_inc_idn = ViewBag.ate_inc_idn });}
+
+    </div>
+
+
+</div>
+
+
+

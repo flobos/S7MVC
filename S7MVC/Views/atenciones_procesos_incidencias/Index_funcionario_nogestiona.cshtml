@@ -1,0 +1,52 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_procesos_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+
+<div class="panel-group">
+    
+            
+ 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Gestiones Adicionales</div>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("Insistir Incidencia", "insiste_gestion", "atenciones_procesos_incidencias", new { ate_inc_idn = ViewBag.ate_inc_idn }, new { @class = "btn btn-warning btn-md" })    
+            </div>
+        </div>
+  
+</div>
+
+<div class="panel-group">
+   
+   
+    
+    @foreach (var item in Model)
+    {
+
+      
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">@Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.procesos_incidencias.pro_inc_nombre) - @Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.gestiones_incindecias.ges_inc_nombre)</div>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Fecha inicio</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_inicio_atencion)</dd>
+               
+                    <dt>Fecha Termino</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_inicio_atencion)</dd>
+               
+                    <dt>Usuario</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.usuarios.usu_apellidos)  @Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.usuarios.usu_nombres)</dd>
+                
+                    <dt>Observación</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_observacion)</dd>
+                </dl>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_procesos_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+
+<table class="table table-hover table-condensed small">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.ate_pro_inc_fecha_ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.procesos_gestiones_incidencias.gestiones_incindecias.ges_inc_nombre)
+        </th>
+        
+        
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.gestiones_incindecias.ges_inc_nombre)
+        </td>
+
+                @if (ViewBag.max_pro_ges_inc_idn == 38)
+                {
+
+                    <td>
+
+                        @Ajax.ActionLink("Acepta", "acepta_procesos_incidencias", "atenciones_procesos_incidencias",
+                                                         new { acepta = 1, ate_inc_idn = ViewBag.ate_inc_idn },
+                                                          new AjaxOptions
+                                                          {
+                                                              HttpMethod = "POST",
+                                                              OnSuccess = "window.location.reload()",
+                                                              Confirm = "Esta usted seguro?"
+                                                          }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("Rechaza", "acepta_procesos_incidencias", "atenciones_procesos_incidencias",
+                                                         new { acepta = 0 , ate_inc_idn = ViewBag.ate_inc_idn },
+                                                          new AjaxOptions
+                                                          {
+                                                              HttpMethod = "POST",
+                                                              OnSuccess = "window.location.reload()",
+                                                              Confirm = "Esta usted seguro?"
+                                                          }, new { @class = "btn btn-danger" })
+                    </td>
+
+
+                }
+
+
+
+</tr>
+
+   
+}
+
+</table>

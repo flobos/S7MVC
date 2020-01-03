@@ -1,0 +1,1634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sieteModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="anos">
+          <Key>
+            <PropertyRef Name="ano_idn" />
+          </Key>
+          <Property Name="ano_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ano_nombre" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="atenciones">
+          <Key>
+            <PropertyRef Name="ate_idn" />
+          </Key>
+          <Property Name="ate_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_idn" Type="int" Nullable="false" />
+          <Property Name="ate_fecha_ingreso" Type="datetime" Nullable="false" />
+          <Property Name="ate_cerrada" Type="bit" Nullable="false" />
+          <Property Name="emp_usu_sed_idn" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="atenciones_incidencias">
+          <Key>
+            <PropertyRef Name="ate_inc_idn" />
+          </Key>
+          <Property Name="ate_inc_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ate_idn" Type="int" Nullable="false" />
+          <Property Name="usu_pro_idn" Type="int" Nullable="false" />
+          <Property Name="inc_idn" Type="int" Nullable="false" />
+          <Property Name="ate_inc_fecha_ingreso" Type="datetime" Nullable="false" />
+          <Property Name="ate_inc_observacion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ate_inc_resuelta" Type="bit" Nullable="false" />
+          <Property Name="ate_inc_resolucion" Type="varchar" MaxLength="500" />
+          <Property Name="ate_inc_fecha_resuelta" Type="datetime" />
+        </EntityType>
+        <EntityType Name="atenciones_procesos_incidencias">
+          <Key>
+            <PropertyRef Name="ate_pro_inc_idn" />
+          </Key>
+          <Property Name="ate_pro_inc_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ate_inc_idn" Type="int" Nullable="false" />
+          <Property Name="pro_ges_inc_idn" Type="int" Nullable="false" />
+          <Property Name="ate_pro_inc_observacion" Type="varchar" MaxLength="1000" />
+          <Property Name="ate_pro_inc_fecha_ingreso" Type="datetime" Nullable="false" />
+          <Property Name="ate_pro_inc_fecha_inicio_atencion" Type="datetime" Nullable="false" />
+          <Property Name="ate_pro_inc_fecha_termino_atencion" Type="datetime" />
+          <Property Name="emp_usu_sed_idn" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="car_idn" />
+          </Key>
+          <Property Name="car_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="car_nombre" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empresas">
+          <Key>
+            <PropertyRef Name="emp_idn" />
+          </Key>
+          <Property Name="emp_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id_nacional" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="emp_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empresas_usuarios_sedes">
+          <Key>
+            <PropertyRef Name="emp_usu_sed_idn" />
+          </Key>
+          <Property Name="emp_usu_sed_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_idn" Type="int" Nullable="false" />
+          <Property Name="usu_idn" Type="int" Nullable="false" />
+          <Property Name="sed_idn" Type="int" Nullable="false" />
+          <Property Name="car_idn" Type="int" Nullable="false" />
+          <Property Name="emp_usu_sed_fecha_ingreso" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gestiones_incindecias">
+          <Key>
+            <PropertyRef Name="ges_inc_idn" />
+          </Key>
+          <Property Name="ges_inc_idn" Type="int" Nullable="false" />
+          <Property Name="ges_inc_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="incidencias">
+          <Key>
+            <PropertyRef Name="inc_idn" />
+          </Key>
+          <Property Name="inc_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inc_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="tip_inc_idn" Type="int" />
+        </EntityType>
+        <EntityType Name="periodos">
+          <Key>
+            <PropertyRef Name="per_idn" />
+          </Key>
+          <Property Name="per_idn" Type="int" Nullable="false" />
+          <Property Name="per_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="periodos_evaluaciones_gestiones">
+          <Key>
+            <PropertyRef Name="per_eva_ges_idn" />
+          </Key>
+          <Property Name="per_eva_ges_idn" Type="int" Nullable="false" />
+          <Property Name="per_eva_ges_fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="per_eva_ges_activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procesos_gestiones_incidencias">
+          <Key>
+            <PropertyRef Name="pro_ges_inc_idn" />
+          </Key>
+          <Property Name="pro_ges_inc_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pro_inc_idn" Type="int" Nullable="false" />
+          <Property Name="ges_inc_idn" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procesos_gestiones_incidencias_saltos">
+          <Key>
+            <PropertyRef Name="pro_ges_inc_sal" />
+          </Key>
+          <Property Name="pro_ges_inc_sal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pro_ges_inc_idn" Type="int" Nullable="false" />
+          <Property Name="pro_ges_inc_idn_salta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procesos_incidencias">
+          <Key>
+            <PropertyRef Name="pro_inc_idn" />
+          </Key>
+          <Property Name="pro_inc_idn" Type="int" Nullable="false" />
+          <Property Name="pro_inc_nombre" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="pro_idn" />
+          </Key>
+          <Property Name="pro_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pro_codigo_umas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pro_nombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="emp_usu_sed_idn" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ramos">
+          <Key>
+            <PropertyRef Name="ram_idn" />
+          </Key>
+          <Property Name="ram_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ram_codigo_umas" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ram_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reportes">
+          <Key>
+            <PropertyRef Name="rep_idn" />
+          </Key>
+          <Property Name="rep_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rep_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="rep_url" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sedes">
+          <Key>
+            <PropertyRef Name="sed_idn" />
+          </Key>
+          <Property Name="sed_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sed_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semaforo_periodos_evaluaciones">
+          <Key>
+            <PropertyRef Name="sem_per_idn" />
+          </Key>
+          <Property Name="sem_per_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_eva_ges_idn" Type="int" Nullable="false" />
+          <Property Name="pro_inc_idn" Type="int" Nullable="false" />
+          <Property Name="sem_idn" Type="int" Nullable="false" />
+          <Property Name="sem_per_dias_desde" Type="int" Nullable="false" />
+          <Property Name="sem_per_dias_hasta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semaforos">
+          <Key>
+            <PropertyRef Name="sem_idn" />
+          </Key>
+          <Property Name="sem_idn" Type="int" Nullable="false" />
+          <Property Name="sem_color" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sem_codigo_color" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipos_incidencias">
+          <Key>
+            <PropertyRef Name="tip_inc_idn" />
+          </Key>
+          <Property Name="tip_inc_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tip_inc_nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usu_idn" />
+          </Key>
+          <Property Name="usu_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_nombres" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="usu_apellidos" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="usu_id_nacional" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usu_email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="usu_clave" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios_productos">
+          <Key>
+            <PropertyRef Name="usu_pro_idn" />
+          </Key>
+          <Property Name="usu_pro_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_idn" Type="int" Nullable="false" />
+          <Property Name="pro_idn" Type="int" Nullable="false" />
+          <Property Name="ano_idn" Type="int" Nullable="false" />
+          <Property Name="per_idn" Type="int" Nullable="false" />
+          <Property Name="usu_pro_activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios_productos_ramos">
+          <Key>
+            <PropertyRef Name="usu_pro_ram_idn" />
+          </Key>
+          <Property Name="usu_pro_ram_idn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_pro_idn" Type="int" Nullable="false" />
+          <Property Name="ram_idn" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_atenciones_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="atenciones" Type="Self.atenciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="atenciones">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_atenciones">
+          <End Role="atenciones" Type="Self.atenciones" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atenciones">
+              <PropertyRef Name="ate_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="ate_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_incidencias">
+          <End Role="incidencias" Type="Self.incidencias" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencias">
+              <PropertyRef Name="inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_usuarios_productos">
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_productos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="usu_pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_atenciones_incidencias">
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atenciones_incidencias">
+              <PropertyRef Name="ate_inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="ate_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_cargos">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="car_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="car_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_empresas">
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas">
+              <PropertyRef Name="emp_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_sedes">
+          <End Role="sedes" Type="Self.sedes" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sedes">
+              <PropertyRef Name="sed_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_usuarios">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usu_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="usu_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencias_tipos_incidencias">
+          <End Role="tipos_incidencias" Type="Self.tipos_incidencias" Multiplicity="0..1" />
+          <End Role="incidencias" Type="Self.incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_incidencias">
+              <PropertyRef Name="tip_inc_idn" />
+            </Principal>
+            <Dependent Role="incidencias">
+              <PropertyRef Name="tip_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_gestiones_incindecias">
+          <End Role="gestiones_incindecias" Type="Self.gestiones_incindecias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gestiones_incindecias">
+              <PropertyRef Name="ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_procesos_incidencias">
+          <End Role="procesos_incidencias" Type="Self.procesos_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias_saltos" Type="Self.procesos_gestiones_incidencias_saltos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias_saltos">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias_saltos" Type="Self.procesos_gestiones_incidencias_saltos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias_saltos">
+              <PropertyRef Name="pro_ges_inc_idn_salta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productos_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones">
+          <End Role="periodos_evaluaciones_gestiones" Type="Self.periodos_evaluaciones_gestiones" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="periodos_evaluaciones_gestiones">
+              <PropertyRef Name="per_eva_ges_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="per_eva_ges_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_procesos_incidencias">
+          <End Role="procesos_incidencias" Type="Self.procesos_incidencias" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="pro_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_semaforos">
+          <End Role="semaforos" Type="Self.semaforos" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semaforos">
+              <PropertyRef Name="sem_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="sem_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_anos">
+          <End Role="anos" Type="Self.anos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="anos">
+              <PropertyRef Name="ano_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="ano_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_periodos">
+          <End Role="periodos" Type="Self.periodos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="periodos">
+              <PropertyRef Name="per_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="per_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_productos">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pro_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_ramos_ramos">
+          <End Role="ramos" Type="Self.ramos" Multiplicity="1" />
+          <End Role="usuarios_productos_ramos" Type="Self.usuarios_productos_ramos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ramos">
+              <PropertyRef Name="ram_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos_ramos">
+              <PropertyRef Name="ram_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_ramos_usuarios_productos">
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="1" />
+          <End Role="usuarios_productos_ramos" Type="Self.usuarios_productos_ramos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_productos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos_ramos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_usuarios">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usu_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="usu_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sieteModeloStoreContainer">
+          <EntitySet Name="anos" EntityType="Self.anos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="atenciones" EntityType="Self.atenciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="atenciones_incidencias" EntityType="Self.atenciones_incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="atenciones_procesos_incidencias" EntityType="Self.atenciones_procesos_incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresas_usuarios_sedes" EntityType="Self.empresas_usuarios_sedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gestiones_incindecias" EntityType="Self.gestiones_incindecias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="incidencias" EntityType="Self.incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="periodos" EntityType="Self.periodos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="periodos_evaluaciones_gestiones" EntityType="Self.periodos_evaluaciones_gestiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="procesos_gestiones_incidencias" EntityType="Self.procesos_gestiones_incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="procesos_gestiones_incidencias_saltos" EntityType="Self.procesos_gestiones_incidencias_saltos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="procesos_incidencias" EntityType="Self.procesos_incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ramos" EntityType="Self.ramos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reportes" EntityType="Self.reportes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sedes" EntityType="Self.sedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semaforo_periodos_evaluaciones" EntityType="Self.semaforo_periodos_evaluaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semaforos" EntityType="Self.semaforos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipos_incidencias" EntityType="Self.tipos_incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios_productos" EntityType="Self.usuarios_productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios_productos_ramos" EntityType="Self.usuarios_productos_ramos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_atenciones_empresas_usuarios_sedes" Association="Self.FK_atenciones_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="atenciones" EntitySet="atenciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_atenciones" Association="Self.FK_atenciones_incidencias_atenciones">
+            <End Role="atenciones" EntitySet="atenciones" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_incidencias" Association="Self.FK_atenciones_incidencias_incidencias">
+            <End Role="incidencias" EntitySet="incidencias" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_usuarios_productos" Association="Self.FK_atenciones_incidencias_usuarios_productos">
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_atenciones_incidencias" Association="Self.FK_atenciones_procesos_incidencias_atenciones_incidencias">
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_empresas_usuarios_sedes" Association="Self.FK_atenciones_procesos_incidencias_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias" Association="Self.FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_cargos" Association="Self.FK_empresas_usuarios_sedes_cargos">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_empresas" Association="Self.FK_empresas_usuarios_sedes_empresas">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_sedes" Association="Self.FK_empresas_usuarios_sedes_sedes">
+            <End Role="sedes" EntitySet="sedes" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_usuarios" Association="Self.FK_empresas_usuarios_sedes_usuarios">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencias_tipos_incidencias" Association="Self.FK_incidencias_tipos_incidencias">
+            <End Role="tipos_incidencias" EntitySet="tipos_incidencias" />
+            <End Role="incidencias" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_gestiones_incindecias" Association="Self.FK_procesos_gestiones_incidencias_gestiones_incindecias">
+            <End Role="gestiones_incindecias" EntitySet="gestiones_incindecias" />
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_procesos_incidencias" Association="Self.FK_procesos_gestiones_incidencias_procesos_incidencias">
+            <End Role="procesos_incidencias" EntitySet="procesos_incidencias" />
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias" Association="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="procesos_gestiones_incidencias_saltos" EntitySet="procesos_gestiones_incidencias_saltos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1" Association="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="procesos_gestiones_incidencias_saltos" EntitySet="procesos_gestiones_incidencias_saltos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productos_empresas_usuarios_sedes" Association="Self.FK_productos_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones" Association="Self.FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones">
+            <End Role="periodos_evaluaciones_gestiones" EntitySet="periodos_evaluaciones_gestiones" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_procesos_incidencias" Association="Self.FK_semaforo_periodos_evaluaciones_procesos_incidencias">
+            <End Role="procesos_incidencias" EntitySet="procesos_incidencias" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_semaforos" Association="Self.FK_semaforo_periodos_evaluaciones_semaforos">
+            <End Role="semaforos" EntitySet="semaforos" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_anos" Association="Self.FK_usuarios_productos_anos">
+            <End Role="anos" EntitySet="anos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_periodos" Association="Self.FK_usuarios_productos_periodos">
+            <End Role="periodos" EntitySet="periodos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_productos" Association="Self.FK_usuarios_productos_productos">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_ramos_ramos" Association="Self.FK_usuarios_productos_ramos_ramos">
+            <End Role="ramos" EntitySet="ramos" />
+            <End Role="usuarios_productos_ramos" EntitySet="usuarios_productos_ramos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_ramos_usuarios_productos" Association="Self.FK_usuarios_productos_ramos_usuarios_productos">
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+            <End Role="usuarios_productos_ramos" EntitySet="usuarios_productos_ramos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_usuarios" Association="Self.FK_usuarios_productos_usuarios">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sieteModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="anos">
+          <Key>
+            <PropertyRef Name="ano_idn" />
+          </Key>
+          <Property Name="ano_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ano_nombre" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_usuarios_productos_anos" FromRole="anos" ToRole="usuarios_productos" />
+        </EntityType>
+        <EntityType Name="atenciones">
+          <Key>
+            <PropertyRef Name="ate_idn" />
+          </Key>
+          <Property Name="ate_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_idn" Type="Int32" Nullable="false" />
+          <Property Name="ate_fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ate_cerrada" Type="Boolean" Nullable="false" />
+          <Property Name="emp_usu_sed_idn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_atenciones_empresas_usuarios_sedes" FromRole="atenciones" ToRole="empresas_usuarios_sedes" />
+          <NavigationProperty Name="atenciones_incidencias" Relationship="Self.FK_atenciones_incidencias_atenciones" FromRole="atenciones" ToRole="atenciones_incidencias" />
+        </EntityType>
+        <EntityType Name="atenciones_incidencias">
+          <Key>
+            <PropertyRef Name="ate_inc_idn" />
+          </Key>
+          <Property Name="ate_inc_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ate_idn" Type="Int32" Nullable="false" />
+          <Property Name="usu_pro_idn" Type="Int32" Nullable="false" />
+          <Property Name="inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="ate_inc_fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ate_inc_observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ate_inc_resuelta" Type="Boolean" Nullable="false" />
+          <Property Name="ate_inc_resolucion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ate_inc_fecha_resuelta" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="atenciones" Relationship="Self.FK_atenciones_incidencias_atenciones" FromRole="atenciones_incidencias" ToRole="atenciones" />
+          <NavigationProperty Name="incidencias" Relationship="Self.FK_atenciones_incidencias_incidencias" FromRole="atenciones_incidencias" ToRole="incidencias" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_atenciones_incidencias_usuarios_productos" FromRole="atenciones_incidencias" ToRole="usuarios_productos" />
+          <NavigationProperty Name="atenciones_procesos_incidencias" Relationship="Self.FK_atenciones_procesos_incidencias_atenciones_incidencias" FromRole="atenciones_incidencias" ToRole="atenciones_procesos_incidencias" />
+        </EntityType>
+        <EntityType Name="atenciones_procesos_incidencias">
+          <Key>
+            <PropertyRef Name="ate_pro_inc_idn" />
+          </Key>
+          <Property Name="ate_pro_inc_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ate_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="pro_ges_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="ate_pro_inc_observacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ate_pro_inc_fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="emp_usu_sed_idn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="atenciones_incidencias" Relationship="Self.FK_atenciones_procesos_incidencias_atenciones_incidencias" FromRole="atenciones_procesos_incidencias" ToRole="atenciones_incidencias" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_atenciones_procesos_incidencias_empresas_usuarios_sedes" FromRole="atenciones_procesos_incidencias" ToRole="empresas_usuarios_sedes" />
+          <NavigationProperty Name="procesos_gestiones_incidencias" Relationship="Self.FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias" FromRole="atenciones_procesos_incidencias" ToRole="procesos_gestiones_incidencias" />
+          <Property Name="ate_pro_inc_fecha_inicio_atencion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ate_pro_inc_fecha_termino_atencion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="car_idn" />
+          </Key>
+          <Property Name="car_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="car_nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_empresas_usuarios_sedes_cargos" FromRole="cargos" ToRole="empresas_usuarios_sedes" />
+        </EntityType>
+        <EntityType Name="empresas">
+          <Key>
+            <PropertyRef Name="emp_idn" />
+          </Key>
+          <Property Name="emp_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id_nacional" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emp_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_empresas_usuarios_sedes_empresas" FromRole="empresas" ToRole="empresas_usuarios_sedes" />
+        </EntityType>
+        <EntityType Name="empresas_usuarios_sedes">
+          <Key>
+            <PropertyRef Name="emp_usu_sed_idn" />
+          </Key>
+          <Property Name="emp_usu_sed_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_idn" Type="Int32" Nullable="false" />
+          <Property Name="usu_idn" Type="Int32" Nullable="false" />
+          <Property Name="sed_idn" Type="Int32" Nullable="false" />
+          <Property Name="car_idn" Type="Int32" Nullable="false" />
+          <Property Name="emp_usu_sed_fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="atenciones" Relationship="Self.FK_atenciones_empresas_usuarios_sedes" FromRole="empresas_usuarios_sedes" ToRole="atenciones" />
+          <NavigationProperty Name="atenciones_procesos_incidencias" Relationship="Self.FK_atenciones_procesos_incidencias_empresas_usuarios_sedes" FromRole="empresas_usuarios_sedes" ToRole="atenciones_procesos_incidencias" />
+          <NavigationProperty Name="cargos" Relationship="Self.FK_empresas_usuarios_sedes_cargos" FromRole="empresas_usuarios_sedes" ToRole="cargos" />
+          <NavigationProperty Name="empresas" Relationship="Self.FK_empresas_usuarios_sedes_empresas" FromRole="empresas_usuarios_sedes" ToRole="empresas" />
+          <NavigationProperty Name="sedes" Relationship="Self.FK_empresas_usuarios_sedes_sedes" FromRole="empresas_usuarios_sedes" ToRole="sedes" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK_empresas_usuarios_sedes_usuarios" FromRole="empresas_usuarios_sedes" ToRole="usuarios" />
+          <NavigationProperty Name="productos" Relationship="Self.FK_productos_empresas_usuarios_sedes" FromRole="empresas_usuarios_sedes" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="gestiones_incindecias">
+          <Key>
+            <PropertyRef Name="ges_inc_idn" />
+          </Key>
+          <Property Name="ges_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="ges_inc_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="procesos_gestiones_incidencias" Relationship="Self.FK_procesos_gestiones_incidencias_gestiones_incindecias" FromRole="gestiones_incindecias" ToRole="procesos_gestiones_incidencias" />
+        </EntityType>
+        <EntityType Name="incidencias">
+          <Key>
+            <PropertyRef Name="inc_idn" />
+          </Key>
+          <Property Name="inc_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inc_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tip_inc_idn" Type="Int32" />
+          <NavigationProperty Name="atenciones_incidencias" Relationship="Self.FK_atenciones_incidencias_incidencias" FromRole="incidencias" ToRole="atenciones_incidencias" />
+          <NavigationProperty Name="tipos_incidencias" Relationship="Self.FK_incidencias_tipos_incidencias" FromRole="incidencias" ToRole="tipos_incidencias" />
+        </EntityType>
+        <EntityType Name="periodos">
+          <Key>
+            <PropertyRef Name="per_idn" />
+          </Key>
+          <Property Name="per_idn" Type="Int32" Nullable="false" />
+          <Property Name="per_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_usuarios_productos_periodos" FromRole="periodos" ToRole="usuarios_productos" />
+        </EntityType>
+        <EntityType Name="periodos_evaluaciones_gestiones">
+          <Key>
+            <PropertyRef Name="per_eva_ges_idn" />
+          </Key>
+          <Property Name="per_eva_ges_idn" Type="Int32" Nullable="false" />
+          <Property Name="per_eva_ges_fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="per_eva_ges_activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="semaforo_periodos_evaluaciones" Relationship="Self.FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones" FromRole="periodos_evaluaciones_gestiones" ToRole="semaforo_periodos_evaluaciones" />
+        </EntityType>
+        <EntityType Name="procesos_gestiones_incidencias">
+          <Key>
+            <PropertyRef Name="pro_ges_inc_idn" />
+          </Key>
+          <Property Name="pro_ges_inc_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pro_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="ges_inc_idn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="atenciones_procesos_incidencias" Relationship="Self.FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias" FromRole="procesos_gestiones_incidencias" ToRole="atenciones_procesos_incidencias" />
+          <NavigationProperty Name="gestiones_incindecias" Relationship="Self.FK_procesos_gestiones_incidencias_gestiones_incindecias" FromRole="procesos_gestiones_incidencias" ToRole="gestiones_incindecias" />
+          <NavigationProperty Name="procesos_incidencias" Relationship="Self.FK_procesos_gestiones_incidencias_procesos_incidencias" FromRole="procesos_gestiones_incidencias" ToRole="procesos_incidencias" />
+          <NavigationProperty Name="procesos_gestiones_incidencias_saltos" Relationship="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias" FromRole="procesos_gestiones_incidencias" ToRole="procesos_gestiones_incidencias_saltos" />
+          <NavigationProperty Name="procesos_gestiones_incidencias_saltos1" Relationship="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1" FromRole="procesos_gestiones_incidencias" ToRole="procesos_gestiones_incidencias_saltos" />
+        </EntityType>
+        <EntityType Name="procesos_gestiones_incidencias_saltos">
+          <Key>
+            <PropertyRef Name="pro_ges_inc_sal" />
+          </Key>
+          <Property Name="pro_ges_inc_sal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pro_ges_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="pro_ges_inc_idn_salta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="procesos_gestiones_incidencias" Relationship="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias" FromRole="procesos_gestiones_incidencias_saltos" ToRole="procesos_gestiones_incidencias" />
+          <NavigationProperty Name="procesos_gestiones_incidencias1" Relationship="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1" FromRole="procesos_gestiones_incidencias_saltos" ToRole="procesos_gestiones_incidencias" />
+        </EntityType>
+        <EntityType Name="procesos_incidencias">
+          <Key>
+            <PropertyRef Name="pro_inc_idn" />
+          </Key>
+          <Property Name="pro_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="pro_inc_nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="procesos_gestiones_incidencias" Relationship="Self.FK_procesos_gestiones_incidencias_procesos_incidencias" FromRole="procesos_incidencias" ToRole="procesos_gestiones_incidencias" />
+          <NavigationProperty Name="semaforo_periodos_evaluaciones" Relationship="Self.FK_semaforo_periodos_evaluaciones_procesos_incidencias" FromRole="procesos_incidencias" ToRole="semaforo_periodos_evaluaciones" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="pro_idn" />
+          </Key>
+          <Property Name="pro_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pro_codigo_umas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pro_nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emp_usu_sed_idn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_productos_empresas_usuarios_sedes" FromRole="productos" ToRole="empresas_usuarios_sedes" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_usuarios_productos_productos" FromRole="productos" ToRole="usuarios_productos" />
+        </EntityType>
+        <EntityType Name="ramos">
+          <Key>
+            <PropertyRef Name="ram_idn" />
+          </Key>
+          <Property Name="ram_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ram_codigo_umas" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ram_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuarios_productos_ramos" Relationship="Self.FK_usuarios_productos_ramos_ramos" FromRole="ramos" ToRole="usuarios_productos_ramos" />
+        </EntityType>
+        <EntityType Name="sedes">
+          <Key>
+            <PropertyRef Name="sed_idn" />
+          </Key>
+          <Property Name="sed_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sed_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_empresas_usuarios_sedes_sedes" FromRole="sedes" ToRole="empresas_usuarios_sedes" />
+        </EntityType>
+        <EntityType Name="semaforo_periodos_evaluaciones">
+          <Key>
+            <PropertyRef Name="sem_per_idn" />
+          </Key>
+          <Property Name="sem_per_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_eva_ges_idn" Type="Int32" Nullable="false" />
+          <Property Name="pro_inc_idn" Type="Int32" Nullable="false" />
+          <Property Name="sem_idn" Type="Int32" Nullable="false" />
+          <Property Name="sem_per_dias_desde" Type="Int32" Nullable="false" />
+          <Property Name="sem_per_dias_hasta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="periodos_evaluaciones_gestiones" Relationship="Self.FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones" FromRole="semaforo_periodos_evaluaciones" ToRole="periodos_evaluaciones_gestiones" />
+          <NavigationProperty Name="procesos_incidencias" Relationship="Self.FK_semaforo_periodos_evaluaciones_procesos_incidencias" FromRole="semaforo_periodos_evaluaciones" ToRole="procesos_incidencias" />
+          <NavigationProperty Name="semaforos" Relationship="Self.FK_semaforo_periodos_evaluaciones_semaforos" FromRole="semaforo_periodos_evaluaciones" ToRole="semaforos" />
+        </EntityType>
+        <EntityType Name="semaforos">
+          <Key>
+            <PropertyRef Name="sem_idn" />
+          </Key>
+          <Property Name="sem_idn" Type="Int32" Nullable="false" />
+          <Property Name="sem_color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sem_codigo_color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="semaforo_periodos_evaluaciones" Relationship="Self.FK_semaforo_periodos_evaluaciones_semaforos" FromRole="semaforos" ToRole="semaforo_periodos_evaluaciones" />
+        </EntityType>
+        <EntityType Name="tipos_incidencias">
+          <Key>
+            <PropertyRef Name="tip_inc_idn" />
+          </Key>
+          <Property Name="tip_inc_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tip_inc_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="incidencias" Relationship="Self.FK_incidencias_tipos_incidencias" FromRole="tipos_incidencias" ToRole="incidencias" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usu_idn" />
+          </Key>
+          <Property Name="usu_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_nombres" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_apellidos" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_id_nacional" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_clave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="empresas_usuarios_sedes" Relationship="Self.FK_empresas_usuarios_sedes_usuarios" FromRole="usuarios" ToRole="empresas_usuarios_sedes" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_usuarios_productos_usuarios" FromRole="usuarios" ToRole="usuarios_productos" />
+        </EntityType>
+        <EntityType Name="usuarios_productos">
+          <Key>
+            <PropertyRef Name="usu_pro_idn" />
+          </Key>
+          <Property Name="usu_pro_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_idn" Type="Int32" Nullable="false" />
+          <Property Name="pro_idn" Type="Int32" Nullable="false" />
+          <Property Name="ano_idn" Type="Int32" Nullable="false" />
+          <Property Name="per_idn" Type="Int32" Nullable="false" />
+          <Property Name="usu_pro_activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="anos" Relationship="Self.FK_usuarios_productos_anos" FromRole="usuarios_productos" ToRole="anos" />
+          <NavigationProperty Name="atenciones_incidencias" Relationship="Self.FK_atenciones_incidencias_usuarios_productos" FromRole="usuarios_productos" ToRole="atenciones_incidencias" />
+          <NavigationProperty Name="periodos" Relationship="Self.FK_usuarios_productos_periodos" FromRole="usuarios_productos" ToRole="periodos" />
+          <NavigationProperty Name="productos" Relationship="Self.FK_usuarios_productos_productos" FromRole="usuarios_productos" ToRole="productos" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK_usuarios_productos_usuarios" FromRole="usuarios_productos" ToRole="usuarios" />
+          <NavigationProperty Name="usuarios_productos_ramos" Relationship="Self.FK_usuarios_productos_ramos_usuarios_productos" FromRole="usuarios_productos" ToRole="usuarios_productos_ramos" />
+        </EntityType>
+        <EntityType Name="usuarios_productos_ramos">
+          <Key>
+            <PropertyRef Name="usu_pro_ram_idn" />
+          </Key>
+          <Property Name="usu_pro_ram_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_pro_idn" Type="Int32" Nullable="false" />
+          <Property Name="ram_idn" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ramos" Relationship="Self.FK_usuarios_productos_ramos_ramos" FromRole="usuarios_productos_ramos" ToRole="ramos" />
+          <NavigationProperty Name="usuarios_productos" Relationship="Self.FK_usuarios_productos_ramos_usuarios_productos" FromRole="usuarios_productos_ramos" ToRole="usuarios_productos" />
+        </EntityType>
+        <Association Name="FK_usuarios_productos_anos">
+          <End Role="anos" Type="Self.anos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="anos">
+              <PropertyRef Name="ano_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="ano_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="atenciones" Type="Self.atenciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="atenciones">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_atenciones">
+          <End Role="atenciones" Type="Self.atenciones" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atenciones">
+              <PropertyRef Name="ate_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="ate_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_incidencias">
+          <End Role="incidencias" Type="Self.incidencias" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencias">
+              <PropertyRef Name="inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_incidencias_usuarios_productos">
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="1" />
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_productos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Principal>
+            <Dependent Role="atenciones_incidencias">
+              <PropertyRef Name="usu_pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_atenciones_incidencias">
+          <End Role="atenciones_incidencias" Type="Self.atenciones_incidencias" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="atenciones_incidencias">
+              <PropertyRef Name="ate_inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="ate_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="atenciones_procesos_incidencias" Type="Self.atenciones_procesos_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="atenciones_procesos_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_cargos">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="car_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="car_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_empresas">
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas">
+              <PropertyRef Name="emp_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_sedes">
+          <End Role="sedes" Type="Self.sedes" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sedes">
+              <PropertyRef Name="sed_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresas_usuarios_sedes_usuarios">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usu_idn" />
+            </Principal>
+            <Dependent Role="empresas_usuarios_sedes">
+              <PropertyRef Name="usu_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productos_empresas_usuarios_sedes">
+          <End Role="empresas_usuarios_sedes" Type="Self.empresas_usuarios_sedes" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas_usuarios_sedes">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="emp_usu_sed_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_gestiones_incindecias">
+          <End Role="gestiones_incindecias" Type="Self.gestiones_incindecias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gestiones_incindecias">
+              <PropertyRef Name="ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencias_tipos_incidencias">
+          <End Role="tipos_incidencias" Type="Self.tipos_incidencias" Multiplicity="0..1" />
+          <End Role="incidencias" Type="Self.incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipos_incidencias">
+              <PropertyRef Name="tip_inc_idn" />
+            </Principal>
+            <Dependent Role="incidencias">
+              <PropertyRef Name="tip_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_periodos">
+          <End Role="periodos" Type="Self.periodos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="periodos">
+              <PropertyRef Name="per_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="per_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones">
+          <End Role="periodos_evaluaciones_gestiones" Type="Self.periodos_evaluaciones_gestiones" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="periodos_evaluaciones_gestiones">
+              <PropertyRef Name="per_eva_ges_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="per_eva_ges_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_procesos_incidencias">
+          <End Role="procesos_incidencias" Type="Self.procesos_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias_saltos" Type="Self.procesos_gestiones_incidencias_saltos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias_saltos">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1">
+          <End Role="procesos_gestiones_incidencias" Type="Self.procesos_gestiones_incidencias" Multiplicity="1" />
+          <End Role="procesos_gestiones_incidencias_saltos" Type="Self.procesos_gestiones_incidencias_saltos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_gestiones_incidencias">
+              <PropertyRef Name="pro_ges_inc_idn" />
+            </Principal>
+            <Dependent Role="procesos_gestiones_incidencias_saltos">
+              <PropertyRef Name="pro_ges_inc_idn_salta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_procesos_incidencias">
+          <End Role="procesos_incidencias" Type="Self.procesos_incidencias" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procesos_incidencias">
+              <PropertyRef Name="pro_inc_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="pro_inc_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_productos">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pro_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_ramos_ramos">
+          <End Role="ramos" Type="Self.ramos" Multiplicity="1" />
+          <End Role="usuarios_productos_ramos" Type="Self.usuarios_productos_ramos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ramos">
+              <PropertyRef Name="ram_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos_ramos">
+              <PropertyRef Name="ram_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_semaforo_periodos_evaluaciones_semaforos">
+          <End Role="semaforos" Type="Self.semaforos" Multiplicity="1" />
+          <End Role="semaforo_periodos_evaluaciones" Type="Self.semaforo_periodos_evaluaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semaforos">
+              <PropertyRef Name="sem_idn" />
+            </Principal>
+            <Dependent Role="semaforo_periodos_evaluaciones">
+              <PropertyRef Name="sem_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_usuarios">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usu_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos">
+              <PropertyRef Name="usu_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuarios_productos_ramos_usuarios_productos">
+          <End Role="usuarios_productos" Type="Self.usuarios_productos" Multiplicity="1" />
+          <End Role="usuarios_productos_ramos" Type="Self.usuarios_productos_ramos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_productos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Principal>
+            <Dependent Role="usuarios_productos_ramos">
+              <PropertyRef Name="usu_pro_idn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sieteEntidades" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="anos" EntityType="Self.anos" />
+          <EntitySet Name="atenciones" EntityType="Self.atenciones" />
+          <EntitySet Name="atenciones_incidencias" EntityType="Self.atenciones_incidencias" />
+          <EntitySet Name="atenciones_procesos_incidencias" EntityType="Self.atenciones_procesos_incidencias" />
+          <EntitySet Name="cargos" EntityType="Self.cargos" />
+          <EntitySet Name="empresas" EntityType="Self.empresas" />
+          <EntitySet Name="empresas_usuarios_sedes" EntityType="Self.empresas_usuarios_sedes" />
+          <EntitySet Name="gestiones_incindecias" EntityType="Self.gestiones_incindecias" />
+          <EntitySet Name="incidencias" EntityType="Self.incidencias" />
+          <EntitySet Name="periodos" EntityType="Self.periodos" />
+          <EntitySet Name="periodos_evaluaciones_gestiones" EntityType="Self.periodos_evaluaciones_gestiones" />
+          <EntitySet Name="procesos_gestiones_incidencias" EntityType="Self.procesos_gestiones_incidencias" />
+          <EntitySet Name="procesos_gestiones_incidencias_saltos" EntityType="Self.procesos_gestiones_incidencias_saltos" />
+          <EntitySet Name="procesos_incidencias" EntityType="Self.procesos_incidencias" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="ramos" EntityType="Self.ramos" />
+          <EntitySet Name="sedes" EntityType="Self.sedes" />
+          <EntitySet Name="semaforo_periodos_evaluaciones" EntityType="Self.semaforo_periodos_evaluaciones" />
+          <EntitySet Name="semaforos" EntityType="Self.semaforos" />
+          <EntitySet Name="tipos_incidencias" EntityType="Self.tipos_incidencias" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <EntitySet Name="usuarios_productos" EntityType="Self.usuarios_productos" />
+          <EntitySet Name="usuarios_productos_ramos" EntityType="Self.usuarios_productos_ramos" />
+          <AssociationSet Name="FK_usuarios_productos_anos" Association="Self.FK_usuarios_productos_anos">
+            <End Role="anos" EntitySet="anos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_empresas_usuarios_sedes" Association="Self.FK_atenciones_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="atenciones" EntitySet="atenciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_atenciones" Association="Self.FK_atenciones_incidencias_atenciones">
+            <End Role="atenciones" EntitySet="atenciones" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_incidencias" Association="Self.FK_atenciones_incidencias_incidencias">
+            <End Role="incidencias" EntitySet="incidencias" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_incidencias_usuarios_productos" Association="Self.FK_atenciones_incidencias_usuarios_productos">
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_atenciones_incidencias" Association="Self.FK_atenciones_procesos_incidencias_atenciones_incidencias">
+            <End Role="atenciones_incidencias" EntitySet="atenciones_incidencias" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_empresas_usuarios_sedes" Association="Self.FK_atenciones_procesos_incidencias_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias" Association="Self.FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="atenciones_procesos_incidencias" EntitySet="atenciones_procesos_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_cargos" Association="Self.FK_empresas_usuarios_sedes_cargos">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_empresas" Association="Self.FK_empresas_usuarios_sedes_empresas">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_sedes" Association="Self.FK_empresas_usuarios_sedes_sedes">
+            <End Role="sedes" EntitySet="sedes" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresas_usuarios_sedes_usuarios" Association="Self.FK_empresas_usuarios_sedes_usuarios">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productos_empresas_usuarios_sedes" Association="Self.FK_productos_empresas_usuarios_sedes">
+            <End Role="empresas_usuarios_sedes" EntitySet="empresas_usuarios_sedes" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_gestiones_incindecias" Association="Self.FK_procesos_gestiones_incidencias_gestiones_incindecias">
+            <End Role="gestiones_incindecias" EntitySet="gestiones_incindecias" />
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencias_tipos_incidencias" Association="Self.FK_incidencias_tipos_incidencias">
+            <End Role="tipos_incidencias" EntitySet="tipos_incidencias" />
+            <End Role="incidencias" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_periodos" Association="Self.FK_usuarios_productos_periodos">
+            <End Role="periodos" EntitySet="periodos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones" Association="Self.FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones">
+            <End Role="periodos_evaluaciones_gestiones" EntitySet="periodos_evaluaciones_gestiones" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_procesos_incidencias" Association="Self.FK_procesos_gestiones_incidencias_procesos_incidencias">
+            <End Role="procesos_incidencias" EntitySet="procesos_incidencias" />
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias" Association="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="procesos_gestiones_incidencias_saltos" EntitySet="procesos_gestiones_incidencias_saltos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1" Association="Self.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1">
+            <End Role="procesos_gestiones_incidencias" EntitySet="procesos_gestiones_incidencias" />
+            <End Role="procesos_gestiones_incidencias_saltos" EntitySet="procesos_gestiones_incidencias_saltos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_procesos_incidencias" Association="Self.FK_semaforo_periodos_evaluaciones_procesos_incidencias">
+            <End Role="procesos_incidencias" EntitySet="procesos_incidencias" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_productos" Association="Self.FK_usuarios_productos_productos">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_ramos_ramos" Association="Self.FK_usuarios_productos_ramos_ramos">
+            <End Role="ramos" EntitySet="ramos" />
+            <End Role="usuarios_productos_ramos" EntitySet="usuarios_productos_ramos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_semaforo_periodos_evaluaciones_semaforos" Association="Self.FK_semaforo_periodos_evaluaciones_semaforos">
+            <End Role="semaforos" EntitySet="semaforos" />
+            <End Role="semaforo_periodos_evaluaciones" EntitySet="semaforo_periodos_evaluaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_usuarios" Association="Self.FK_usuarios_productos_usuarios">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_productos_ramos_usuarios_productos" Association="Self.FK_usuarios_productos_ramos_usuarios_productos">
+            <End Role="usuarios_productos" EntitySet="usuarios_productos" />
+            <End Role="usuarios_productos_ramos" EntitySet="usuarios_productos_ramos" />
+          </AssociationSet>
+          <EntitySet Name="reportes" EntityType="sieteModelo.reportes" />
+        </EntityContainer>
+        <EntityType Name="reportes">
+          <Key>
+            <PropertyRef Name="rep_idn" />
+          </Key>
+          <Property Name="rep_idn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rep_nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="rep_url" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sieteModeloStoreContainer" CdmEntityContainer="sieteEntidades">
+          <EntitySetMapping Name="anos">
+            <EntityTypeMapping TypeName="sieteModelo.anos">
+              <MappingFragment StoreEntitySet="anos">
+                <ScalarProperty Name="ano_idn" ColumnName="ano_idn" />
+                <ScalarProperty Name="ano_nombre" ColumnName="ano_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="atenciones">
+            <EntityTypeMapping TypeName="sieteModelo.atenciones">
+              <MappingFragment StoreEntitySet="atenciones">
+                <ScalarProperty Name="ate_idn" ColumnName="ate_idn" />
+                <ScalarProperty Name="usu_idn" ColumnName="usu_idn" />
+                <ScalarProperty Name="ate_fecha_ingreso" ColumnName="ate_fecha_ingreso" />
+                <ScalarProperty Name="ate_cerrada" ColumnName="ate_cerrada" />
+                <ScalarProperty Name="emp_usu_sed_idn" ColumnName="emp_usu_sed_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="atenciones_incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.atenciones_incidencias">
+              <MappingFragment StoreEntitySet="atenciones_incidencias">
+                <ScalarProperty Name="ate_inc_idn" ColumnName="ate_inc_idn" />
+                <ScalarProperty Name="ate_idn" ColumnName="ate_idn" />
+                <ScalarProperty Name="usu_pro_idn" ColumnName="usu_pro_idn" />
+                <ScalarProperty Name="inc_idn" ColumnName="inc_idn" />
+                <ScalarProperty Name="ate_inc_fecha_ingreso" ColumnName="ate_inc_fecha_ingreso" />
+                <ScalarProperty Name="ate_inc_observacion" ColumnName="ate_inc_observacion" />
+                <ScalarProperty Name="ate_inc_resuelta" ColumnName="ate_inc_resuelta" />
+                <ScalarProperty Name="ate_inc_resolucion" ColumnName="ate_inc_resolucion" />
+                <ScalarProperty Name="ate_inc_fecha_resuelta" ColumnName="ate_inc_fecha_resuelta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="atenciones_procesos_incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.atenciones_procesos_incidencias">
+              <MappingFragment StoreEntitySet="atenciones_procesos_incidencias">
+                <ScalarProperty Name="ate_pro_inc_fecha_termino_atencion" ColumnName="ate_pro_inc_fecha_termino_atencion" />
+                <ScalarProperty Name="ate_pro_inc_fecha_inicio_atencion" ColumnName="ate_pro_inc_fecha_inicio_atencion" />
+                <ScalarProperty Name="ate_pro_inc_idn" ColumnName="ate_pro_inc_idn" />
+                <ScalarProperty Name="ate_inc_idn" ColumnName="ate_inc_idn" />
+                <ScalarProperty Name="pro_ges_inc_idn" ColumnName="pro_ges_inc_idn" />
+                <ScalarProperty Name="ate_pro_inc_observacion" ColumnName="ate_pro_inc_observacion" />
+                <ScalarProperty Name="ate_pro_inc_fecha_ingreso" ColumnName="ate_pro_inc_fecha_ingreso" />
+                <ScalarProperty Name="emp_usu_sed_idn" ColumnName="emp_usu_sed_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargos">
+            <EntityTypeMapping TypeName="sieteModelo.cargos">
+              <MappingFragment StoreEntitySet="cargos">
+                <ScalarProperty Name="car_idn" ColumnName="car_idn" />
+                <ScalarProperty Name="car_nombre" ColumnName="car_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresas">
+            <EntityTypeMapping TypeName="sieteModelo.empresas">
+              <MappingFragment StoreEntitySet="empresas">
+                <ScalarProperty Name="emp_idn" ColumnName="emp_idn" />
+                <ScalarProperty Name="emp_id_nacional" ColumnName="emp_id_nacional" />
+                <ScalarProperty Name="emp_nombre" ColumnName="emp_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresas_usuarios_sedes">
+            <EntityTypeMapping TypeName="sieteModelo.empresas_usuarios_sedes">
+              <MappingFragment StoreEntitySet="empresas_usuarios_sedes">
+                <ScalarProperty Name="emp_usu_sed_idn" ColumnName="emp_usu_sed_idn" />
+                <ScalarProperty Name="emp_idn" ColumnName="emp_idn" />
+                <ScalarProperty Name="usu_idn" ColumnName="usu_idn" />
+                <ScalarProperty Name="sed_idn" ColumnName="sed_idn" />
+                <ScalarProperty Name="car_idn" ColumnName="car_idn" />
+                <ScalarProperty Name="emp_usu_sed_fecha_ingreso" ColumnName="emp_usu_sed_fecha_ingreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gestiones_incindecias">
+            <EntityTypeMapping TypeName="sieteModelo.gestiones_incindecias">
+              <MappingFragment StoreEntitySet="gestiones_incindecias">
+                <ScalarProperty Name="ges_inc_idn" ColumnName="ges_inc_idn" />
+                <ScalarProperty Name="ges_inc_nombre" ColumnName="ges_inc_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.incidencias">
+              <MappingFragment StoreEntitySet="incidencias">
+                <ScalarProperty Name="inc_idn" ColumnName="inc_idn" />
+                <ScalarProperty Name="inc_nombre" ColumnName="inc_nombre" />
+                <ScalarProperty Name="tip_inc_idn" ColumnName="tip_inc_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="periodos">
+            <EntityTypeMapping TypeName="sieteModelo.periodos">
+              <MappingFragment StoreEntitySet="periodos">
+                <ScalarProperty Name="per_idn" ColumnName="per_idn" />
+                <ScalarProperty Name="per_nombre" ColumnName="per_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="periodos_evaluaciones_gestiones">
+            <EntityTypeMapping TypeName="sieteModelo.periodos_evaluaciones_gestiones">
+              <MappingFragment StoreEntitySet="periodos_evaluaciones_gestiones">
+                <ScalarProperty Name="per_eva_ges_idn" ColumnName="per_eva_ges_idn" />
+                <ScalarProperty Name="per_eva_ges_fecha_inicio" ColumnName="per_eva_ges_fecha_inicio" />
+                <ScalarProperty Name="per_eva_ges_activo" ColumnName="per_eva_ges_activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procesos_gestiones_incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.procesos_gestiones_incidencias">
+              <MappingFragment StoreEntitySet="procesos_gestiones_incidencias">
+                <ScalarProperty Name="pro_ges_inc_idn" ColumnName="pro_ges_inc_idn" />
+                <ScalarProperty Name="pro_inc_idn" ColumnName="pro_inc_idn" />
+                <ScalarProperty Name="ges_inc_idn" ColumnName="ges_inc_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procesos_gestiones_incidencias_saltos">
+            <EntityTypeMapping TypeName="sieteModelo.procesos_gestiones_incidencias_saltos">
+              <MappingFragment StoreEntitySet="procesos_gestiones_incidencias_saltos">
+                <ScalarProperty Name="pro_ges_inc_sal" ColumnName="pro_ges_inc_sal" />
+                <ScalarProperty Name="pro_ges_inc_idn" ColumnName="pro_ges_inc_idn" />
+                <ScalarProperty Name="pro_ges_inc_idn_salta" ColumnName="pro_ges_inc_idn_salta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procesos_incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.procesos_incidencias">
+              <MappingFragment StoreEntitySet="procesos_incidencias">
+                <ScalarProperty Name="pro_inc_idn" ColumnName="pro_inc_idn" />
+                <ScalarProperty Name="pro_inc_nombre" ColumnName="pro_inc_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="sieteModelo.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="pro_idn" ColumnName="pro_idn" />
+                <ScalarProperty Name="pro_codigo_umas" ColumnName="pro_codigo_umas" />
+                <ScalarProperty Name="pro_nombre" ColumnName="pro_nombre" />
+                <ScalarProperty Name="emp_usu_sed_idn" ColumnName="emp_usu_sed_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ramos">
+            <EntityTypeMapping TypeName="sieteModelo.ramos">
+              <MappingFragment StoreEntitySet="ramos">
+                <ScalarProperty Name="ram_idn" ColumnName="ram_idn" />
+                <ScalarProperty Name="ram_codigo_umas" ColumnName="ram_codigo_umas" />
+                <ScalarProperty Name="ram_nombre" ColumnName="ram_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sedes">
+            <EntityTypeMapping TypeName="sieteModelo.sedes">
+              <MappingFragment StoreEntitySet="sedes">
+                <ScalarProperty Name="sed_idn" ColumnName="sed_idn" />
+                <ScalarProperty Name="sed_nombre" ColumnName="sed_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semaforo_periodos_evaluaciones">
+            <EntityTypeMapping TypeName="sieteModelo.semaforo_periodos_evaluaciones">
+              <MappingFragment StoreEntitySet="semaforo_periodos_evaluaciones">
+                <ScalarProperty Name="sem_per_idn" ColumnName="sem_per_idn" />
+                <ScalarProperty Name="per_eva_ges_idn" ColumnName="per_eva_ges_idn" />
+                <ScalarProperty Name="pro_inc_idn" ColumnName="pro_inc_idn" />
+                <ScalarProperty Name="sem_idn" ColumnName="sem_idn" />
+                <ScalarProperty Name="sem_per_dias_desde" ColumnName="sem_per_dias_desde" />
+                <ScalarProperty Name="sem_per_dias_hasta" ColumnName="sem_per_dias_hasta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semaforos">
+            <EntityTypeMapping TypeName="sieteModelo.semaforos">
+              <MappingFragment StoreEntitySet="semaforos">
+                <ScalarProperty Name="sem_idn" ColumnName="sem_idn" />
+                <ScalarProperty Name="sem_color" ColumnName="sem_color" />
+                <ScalarProperty Name="sem_codigo_color" ColumnName="sem_codigo_color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipos_incidencias">
+            <EntityTypeMapping TypeName="sieteModelo.tipos_incidencias">
+              <MappingFragment StoreEntitySet="tipos_incidencias">
+                <ScalarProperty Name="tip_inc_idn" ColumnName="tip_inc_idn" />
+                <ScalarProperty Name="tip_inc_nombre" ColumnName="tip_inc_nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="sieteModelo.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="usu_idn" ColumnName="usu_idn" />
+                <ScalarProperty Name="usu_nombres" ColumnName="usu_nombres" />
+                <ScalarProperty Name="usu_apellidos" ColumnName="usu_apellidos" />
+                <ScalarProperty Name="usu_id_nacional" ColumnName="usu_id_nacional" />
+                <ScalarProperty Name="usu_email" ColumnName="usu_email" />
+                <ScalarProperty Name="usu_clave" ColumnName="usu_clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios_productos">
+            <EntityTypeMapping TypeName="sieteModelo.usuarios_productos">
+              <MappingFragment StoreEntitySet="usuarios_productos">
+                <ScalarProperty Name="usu_pro_idn" ColumnName="usu_pro_idn" />
+                <ScalarProperty Name="usu_idn" ColumnName="usu_idn" />
+                <ScalarProperty Name="pro_idn" ColumnName="pro_idn" />
+                <ScalarProperty Name="ano_idn" ColumnName="ano_idn" />
+                <ScalarProperty Name="per_idn" ColumnName="per_idn" />
+                <ScalarProperty Name="usu_pro_activo" ColumnName="usu_pro_activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios_productos_ramos">
+            <EntityTypeMapping TypeName="sieteModelo.usuarios_productos_ramos">
+              <MappingFragment StoreEntitySet="usuarios_productos_ramos">
+                <ScalarProperty Name="usu_pro_ram_idn" ColumnName="usu_pro_ram_idn" />
+                <ScalarProperty Name="usu_pro_idn" ColumnName="usu_pro_idn" />
+                <ScalarProperty Name="ram_idn" ColumnName="ram_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reportes">
+            <EntityTypeMapping TypeName="sieteModelo.reportes">
+              <MappingFragment StoreEntitySet="reportes">
+                <ScalarProperty Name="rep_url" ColumnName="rep_url" />
+                <ScalarProperty Name="rep_nombre" ColumnName="rep_nombre" />
+                <ScalarProperty Name="rep_idn" ColumnName="rep_idn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_incidencias>
+
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_inc_fecha_ingreso)
+        </th>
+        <th>
+            Alumno
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_inc_observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_inc_resuelta)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.incidencias.inc_nombre)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ate_inc_fecha_ingreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuarios_productos.usuarios.usu_apellidos) @Html.DisplayFor(modelItem => item.usuarios_productos.usuarios.usu_nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ate_inc_observacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ate_inc_resuelta)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.incidencias.inc_nombre)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Detalle", "create_funcionario", "atenciones_procesos_incidencias", new { ate_inc_idn = item.ate_inc_idn }, new { @class = "btn btn-info btn-xs" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+

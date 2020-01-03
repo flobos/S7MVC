@@ -1,0 +1,82 @@
+﻿@model S7MVC.Models.atenciones_incidencias
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h3>Detalle</h3>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_inc_fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_inc_fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_inc_observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_inc_observacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_inc_resuelta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_inc_resuelta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_inc_resolucion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_inc_resolucion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_inc_fecha_resuelta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_inc_fecha_resuelta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.atenciones.ate_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.atenciones.ate_idn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.incidencias.inc_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.incidencias.inc_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarios_productos.usu_pro_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios_productos.usu_pro_idn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ate_inc_idn }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+</p>

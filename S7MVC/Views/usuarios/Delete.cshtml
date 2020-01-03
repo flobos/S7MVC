@@ -1,0 +1,64 @@
+﻿@model S7MVC.Models.usuarios
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h3>Eliminar</h3>
+
+<h3>Esta seguro que desea eliminar esto?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_id_nacional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_id_nacional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usu_clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usu_clave)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

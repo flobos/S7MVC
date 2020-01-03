@@ -1,0 +1,47 @@
+﻿
+
+@{
+    ViewBag.Title = "Ingresar";
+}
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        <div class="panel-title">Buscar Usuario</div>
+    </div>
+
+    <div class="panel-body">
+
+
+        @using (Ajax.BeginForm("Details", "usuarios", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_usuarios" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-inline">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label for="v_rut" class="control-label">Rut: </label>
+                    <input type="text" name="v_rut" class="form-control">
+                    
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Buscar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+
+        <div id="div_usuarios">
+        </div>
+
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70fd256489fe4b62b87d90487fd99649" Name="Diagram1">
+        <EntityTypeShape EntityType="sieteModelo.anos" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.atenciones" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.atenciones_incidencias" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.atenciones_procesos_incidencias" Width="2.75" PointX="9.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.cargos" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.empresas" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.empresas_usuarios_sedes" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.gestiones_incindecias" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.incidencias" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.periodos" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.periodos_evaluaciones_gestiones" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.procesos_gestiones_incidencias" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.procesos_gestiones_incidencias_saltos" Width="1.5" PointX="9.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.procesos_incidencias" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.productos" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.ramos" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.sedes" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.semaforo_periodos_evaluaciones" Width="1.5" PointX="7.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.semaforos" Width="1.5" PointX="5.25" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.tipos_incidencias" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.usuarios" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.usuarios_productos" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="sieteModelo.usuarios_productos_ramos" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_anos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_empresas_usuarios_sedes" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_incidencias_atenciones" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_incidencias_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_incidencias_usuarios_productos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_procesos_incidencias_atenciones_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_procesos_incidencias_empresas_usuarios_sedes" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_atenciones_procesos_incidencias_procesos_gestiones_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_empresas_usuarios_sedes_cargos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_empresas_usuarios_sedes_empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_empresas_usuarios_sedes_sedes" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_empresas_usuarios_sedes_usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_productos_empresas_usuarios_sedes" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_procesos_gestiones_incidencias_gestiones_incindecias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_incidencias_tipos_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_periodos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_semaforo_periodos_evaluaciones_periodos_evaluaciones_gestiones" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_procesos_gestiones_incidencias_procesos_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_procesos_gestiones_incidencias_saltos_procesos_gestiones_incidencias1" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_semaforo_periodos_evaluaciones_procesos_incidencias" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_productos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_ramos_ramos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_semaforo_periodos_evaluaciones_semaforos" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="sieteModelo.FK_usuarios_productos_ramos_usuarios_productos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="sieteModelo.reportes" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

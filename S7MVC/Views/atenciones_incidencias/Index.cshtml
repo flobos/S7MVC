@@ -1,0 +1,62 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        <div class="panel-title">Mis Incidencias</div>
+    </div>
+
+    <div class="panel-body">
+
+        <p>
+            @Html.ActionLink("Ingresar", "Create", "atenciones", new { usu_idn = ViewBag.usu_idn }, new { @class = "btn btn-primary btn-md" })
+        </p>
+
+
+        <div id="acordion">
+            @foreach (var item in Model)
+            {
+
+                  <h3>@item.incidencias.inc_nombre - @item.ate_inc_fecha_ingreso</h3>
+                  <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Programa</dt>
+                            <dd>@Html.DisplayFor(modelItem => item.usuarios_productos.productos.pro_nombre)</dd>
+
+                            <dt>Observacion</dt>
+                            <dd>@Html.DisplayFor(modelItem => item.ate_inc_observacion)</dd>
+
+                            <dt>Funcionario a Cargo</dt>
+                            <dd>@Html.DisplayFor(modelItem => item.atenciones.empresas_usuarios_sedes.usuarios.usu_apellidos)  @Html.DisplayFor(modelItem => item.atenciones.empresas_usuarios_sedes.usuarios.usu_nombres)</dd>
+
+                            <dt>Resuelta</dt>
+                            <dd>@Html.DisplayFor(modelItem => item.ate_inc_resuelta)</dd>
+
+                            <dt>Fecha Resolucion</dt>
+                            <dd>@Html.DisplayFor(modelItem => item.ate_inc_fecha_resuelta)</dd>
+
+                            <dd>@Html.ActionLink("Detalle", "Index_seccion_procesos_incidencias", "procesos_incidencias", new { ate_inc_idn = item.ate_inc_idn }, new { @class = "btn btn-info btn-md" })</dd>
+
+                        </dl>
+                  </div>
+                
+            }
+        
+        
+        </div>
+
+
+
+
+
+          
+
+
+
+      </div>
+</div>

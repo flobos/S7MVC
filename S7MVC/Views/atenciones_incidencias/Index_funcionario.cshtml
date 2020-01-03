@@ -1,0 +1,41 @@
+﻿
+
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        <div class="panel-title">Buscar Incidencias</div>
+    </div>
+
+    <div class="panel-body">
+
+        @using (Ajax.BeginForm("Index_muestra_incidencias", "atenciones_incidencias", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div_atenciones_incidencias" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="v_rut" class="control-label">Rut:</label>
+                    <input type="text" name="v_rut" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="v_fecha" class="control-label">Fecha:</label>
+                    @Html.Editor("v_fecha", "FechaCortaPicker")
+                    
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Buscar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
+        }
+     </div>
+
+ </div>
+
+<div id="div_atenciones_incidencias">
+
+</div>

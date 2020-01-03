@@ -1,0 +1,42 @@
+﻿@model S7MVC.Models.reportes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.rep_nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.rep_nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.rep_url)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.rep_url)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.rep_idn }, new { @class = "btn btn-warning" }) |
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+    </p>
+</body>
+</html>

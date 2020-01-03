@@ -1,0 +1,41 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_procesos_incidencias>
+
+@{
+    ViewBag.Title = "Etapas incidencias";
+}
+
+<h3 class="text-info">Incidencia Terminada</h3>
+
+
+
+<div class="panel-group">
+    @foreach (var item in Model)
+    {
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">@Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.procesos_incidencias.pro_inc_nombre) - @Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.gestiones_incindecias.ges_inc_nombre)</div>
+            </div>
+            <div class="panel-body">
+                <dl>
+                    <dt>Fecha inicio</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_inicio_atencion)</dd>
+                </dl>
+                <dl>
+                    <dt>Fecha Termino</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_inicio_atencion)</dd>
+                </dl>
+
+                <dl>
+                    <dt>Usuario</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.usuarios.usu_apellidos)  @Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.usuarios.usu_nombres)</dd>
+                </dl>
+                <dl>
+                    <dt>Observación</dt>
+                    <dd>@Html.DisplayFor(modelItem => item.ate_pro_inc_observacion)</dd>
+                </dl>
+            </div>
+        </div>
+    }
+</div>

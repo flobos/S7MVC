@@ -1,0 +1,123 @@
+﻿@model S7MVC.ViewModels.vm_atenciones_incidencias
+
+@{
+    ViewBag.Title = "Ingresar";
+}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var ddlincidencias = $("#inc_idn");
+        ddlincidencias.html('');
+    });
+
+
+
+    $(function () {
+        $("#tip_inc_idn").change(function () {
+            var selectedItem = $(this).val();
+            var ddlincidencias = $("#inc_idn");
+            $.ajax({    
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("p_llena_combo_incidencias","atenciones"))",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: { "id": selectedItem },
+
+            success: function (data) {                       
+                ddlincidencias.html('');
+                $.each(data, function (id, option) {
+                    ddlincidencias.append($('<option></option>').val(option.Value).html(option.Text));
+                });
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error cargando incidencia');
+               
+            }
+        });
+            
+        });
+    });
+</script>
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        <div class="panel-title">Ingresar incidencia</div>
+    </div>
+
+    <div class="panel-body">
+
+        @using (Html.BeginForm(new { enctype = "multipart/form-data" }))
+        {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.usu_idn)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.usu_pro_idn, "Mis productos", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("usu_pro_idn", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.usu_pro_idn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tip_inc_idn, "Tipo Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("tip_inc_idn", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tip_inc_idn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.inc_idn, "Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("inc_idn", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.inc_idn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ate_inc_observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.ate_inc_observacion, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ate_inc_observacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Subir imagen", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="fu_archivo" name="upload" class="form-control" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+<div>
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+</div>

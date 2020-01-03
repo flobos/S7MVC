@@ -1,0 +1,37 @@
+﻿@model IEnumerable<S7MVC.Models.procesos_gestiones_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h5>Etapas - Gestiones</h5>
+
+
+<table class="table table-hover table-condensed small">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.procesos_incidencias.pro_inc_nombre)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.gestiones_incindecias.ges_inc_nombre)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.procesos_incidencias.pro_inc_nombre)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.gestiones_incindecias.ges_inc_nombre)
+        </td>
+       
+       
+    </tr>
+}
+
+</table>

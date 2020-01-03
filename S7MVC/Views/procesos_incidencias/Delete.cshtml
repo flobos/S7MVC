@@ -1,0 +1,32 @@
+﻿@model S7MVC.Models.procesos_incidencias
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h3>Eliminar</h3>
+
+<h3>Esta seguro que desea eliminar esto?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pro_inc_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pro_inc_nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

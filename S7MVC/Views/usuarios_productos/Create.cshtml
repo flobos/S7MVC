@@ -1,0 +1,63 @@
+﻿@model S7MVC.Models.usuarios_productos
+
+@{
+    ViewBag.Title = "Ingresar";
+}
+
+<h3>Ingresar</h3>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       @Html.HiddenFor(model => model.usu_idn)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pro_idn, "pro_idn", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("pro_idn", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.pro_idn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ano_idn, "ano_idn", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ano_idn", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ano_idn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.per_idn, "per_idn", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("per_idn", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.per_idn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.usu_pro_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.usu_pro_activo)
+                    @Html.ValidationMessageFor(model => model.usu_pro_activo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index", null, new { @class ="btn btn-default" })
+</div>

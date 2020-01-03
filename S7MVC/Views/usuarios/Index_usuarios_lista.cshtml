@@ -1,0 +1,48 @@
+﻿@model IEnumerable<S7MVC.Models.usuarios>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h5>Usuarios</h5>
+
+<p>
+    @Html.ActionLink("Ingresar", "Create", null , new { @class = "btn btn-primary btn-md" })
+</p>
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_id_nacional)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_id_nacional)
+        </td>
+      
+        <td>
+            @Html.ActionLink("Incidencias", "Create","atenciones", new { usu_idn = item.usu_idn }, new { @class = "btn btn-info btn-xs" })
+            @Html.ActionLink("Productos", "Details", new { id = item.usu_idn }, new { @class = "btn btn-info btn-xs" })
+            @Html.ActionLink("Editar", "Edit", new { id=item.usu_idn }, new { @class = "btn btn-warning btn-xs" } ) 
+          
+        </td>
+    </tr>
+}
+
+</table>

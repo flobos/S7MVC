@@ -1,0 +1,33 @@
+﻿@model IEnumerable<S7MVC.Models.reportes>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h3>Reportes</h3>
+
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rep_nombre)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.rep_nombre)
+            </td>
+            
+            <td>
+               
+                <a href="~/Reports_Pages/@item.rep_url" target="_blank" class="btn btn-warning btn-xs">Mostrar</a>
+               
+            </td>
+        </tr>
+    }
+
+</table>

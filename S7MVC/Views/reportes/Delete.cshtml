@@ -1,0 +1,48 @@
+﻿@model S7MVC.Models.reportes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Esta seguro que desea eliminar esto?</h3>
+    <div>
+        
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.rep_nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.rep_nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.rep_url)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.rep_url)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        }
+    </div>
+</body>
+</html>

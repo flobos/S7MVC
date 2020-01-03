@@ -1,0 +1,51 @@
+﻿@model IEnumerable<S7MVC.Models.atenciones_procesos_incidencias>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h4>Gestiones de mi incidencia</h4>
+
+
+<table class="table table-hover table-condensed small">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_pro_inc_observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ate_pro_inc_fecha_ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.atenciones_incidencias.ate_inc_observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.procesos_gestiones_incidencias.pro_ges_inc_idn)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ate_pro_inc_observacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ate_pro_inc_fecha_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.atenciones_incidencias.ate_inc_observacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.procesos_gestiones_incidencias.pro_ges_inc_idn)
+        </td>
+        
+    </tr>
+}
+
+</table>

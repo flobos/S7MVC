@@ -1,0 +1,67 @@
+﻿@model IEnumerable<S7MVC.Models.usuarios_productos>
+
+
+
+<div class="panel-group">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Programas</div>
+        </div>
+        <div class="panel-body">
+
+            <p>
+                @Html.ActionLink("Ingresar", "Create", "usuarios_productos", new { usu_idn = ViewBag.usu_idn }, new { @class = "btn btn-primary btn-md" })
+            </p>
+            <table class="table table-hover table-condensed small">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.productos.pro_nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.productos.pro_codigo_umas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.anos.ano_nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.periodos.per_nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.usu_pro_activo)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productos.pro_nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productos.pro_codigo_umas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.anos.ano_nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.periodos.per_nombre)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.usu_pro_activo)
+                        </td>
+
+
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+</div>

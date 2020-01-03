@@ -1,0 +1,64 @@
+﻿@model S7MVC.Models.atenciones_procesos_incidencias
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h3>Eliminar</h3>
+
+<h3>Esta seguro que desea eliminar esto?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_pro_inc_observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_pro_inc_observacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ate_pro_inc_fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ate_pro_inc_fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.atenciones_incidencias.ate_inc_observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.atenciones_incidencias.ate_inc_observacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresas_usuarios_sedes.emp_usu_sed_idn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.procesos_gestiones_incidencias.pro_ges_inc_idn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.procesos_gestiones_incidencias.pro_ges_inc_idn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
